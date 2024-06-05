@@ -1,8 +1,11 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import React from 'react'
+'use client';
+import Image from 'next/image';
+import Link from 'next/link';
+import { signIn, useSession } from 'next-auth/react';
 
 const Header = () => {
+  const { datsa: session } = useSession();
+  console.log(session);
   return (
     <div className="shadow-sm border-b sticky top-0 bg-white z-30 p-3">
       <div className="flex justify-between items-center max-w-6xl mx-auto">
@@ -34,10 +37,15 @@ const Header = () => {
 
         {/* menu items */}
 
-        <button className="text-sm font-semibold text-blue-500">Log In</button>
+        <button
+          onClick={() => signIn()}
+          className="text-sm font-semibold text-blue-500"
+        >
+          Log In
+        </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
